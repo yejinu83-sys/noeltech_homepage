@@ -1,0 +1,638 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>노을테크 | 회계·세무 자동화 AI SaaS</title>
+  <meta name="description" content="중소기업과 엔터프라이즈를 위한 회계·세무 자동화 AI 어시스턴트, 노을AI를 만드는 노을테크 소개 사이트" />
+  <style>
+    :root {
+      --ink: #1f2328;
+      --muted: #667085;
+      --line: #e5e7eb;
+      --paper: #fffaf6;
+      --white: #ffffff;
+      --coral: #f26f4f;
+      --coral-dark: #d94f31;
+      --teal: #157c78;
+      --mint: #e6f6f2;
+      --graphite: #242832;
+      --gold: #f5b85f;
+      --shadow: 0 22px 60px rgba(31, 35, 40, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #fbfaf8;
+      letter-spacing: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 250, 246, 0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+    }
+
+    .nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      color: var(--graphite);
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--coral), var(--gold) 58%, var(--teal));
+      box-shadow: 0 10px 24px rgba(242, 111, 79, 0.28);
+    }
+
+    nav ul {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      color: #3f4652;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .nav-cta, .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 800;
+      background: var(--graphite);
+      color: var(--white);
+      border: 1px solid var(--graphite);
+      box-shadow: 0 12px 24px rgba(36, 40, 50, 0.18);
+    }
+
+    .button.secondary {
+      color: var(--graphite);
+      background: rgba(255, 255, 255, 0.84);
+      border-color: rgba(36, 40, 50, 0.16);
+      box-shadow: none;
+    }
+
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 72px);
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      background: var(--graphite);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(25, 25, 30, 0.88) 0%, rgba(25, 25, 30, 0.66) 38%, rgba(25, 25, 30, 0.18) 72%), url("assets/noeultech-hero.png") center/cover no-repeat;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: min(720px, 100%);
+      padding: 80px 0 104px;
+      color: var(--white);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: #ffd2c5;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      background: var(--coral);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      margin-bottom: 22px;
+      max-width: 680px;
+      font-size: clamp(44px, 7vw, 82px);
+      line-height: 1.03;
+      letter-spacing: 0;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    .hero p {
+      max-width: 620px;
+      margin-bottom: 32px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 19px;
+      line-height: 1.75;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-actions .button:first-child { background: var(--coral); border-color: var(--coral); }
+
+    .quick-stats {
+      position: relative;
+      z-index: 2;
+      margin-top: -54px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 14px;
+    }
+
+    .stat {
+      min-height: 118px;
+      padding: 22px;
+      border-radius: 6px;
+      background: #fffdfb;
+      border: 1px solid #f0ebe5;
+    }
+
+    .stat strong {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 30px;
+      color: var(--coral-dark);
+    }
+
+    .stat span { color: var(--muted); font-size: 14px; line-height: 1.45; }
+
+    section { padding: 96px 0; }
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(280px, 0.55fr);
+      gap: 56px;
+      align-items: end;
+      margin-bottom: 42px;
+    }
+
+    .label {
+      margin-bottom: 12px;
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .section-head p, .muted {
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .product-band {
+      background: var(--paper);
+      border-top: 1px solid #f0e6dc;
+      border-bottom: 1px solid #f0e6dc;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .feature, .job, .policy {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      padding: 28px;
+    }
+
+    .icon {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      color: var(--teal);
+      background: var(--mint);
+      font-weight: 900;
+    }
+
+    h3 { margin-bottom: 12px; font-size: 22px; }
+    .feature p, .job p, .policy p { color: var(--muted); line-height: 1.7; margin-bottom: 0; }
+
+    .strategy-layout {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .growth-card {
+      padding: 34px;
+      border-radius: 8px;
+      background: var(--graphite);
+      color: var(--white);
+    }
+
+    .growth-card strong {
+      display: block;
+      margin: 12px 0 10px;
+      font-size: 58px;
+      line-height: 1;
+      color: #ffb199;
+    }
+
+    .growth-card p { color: rgba(255,255,255,0.76); line-height: 1.7; }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 20px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .step b { color: var(--coral-dark); }
+    .step p { margin-bottom: 0; color: var(--muted); line-height: 1.7; }
+
+    .jobs-grid, .policy-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .job ul, .policy ul {
+      display: grid;
+      gap: 10px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .job li, .policy li {
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .job li::before, .policy li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--coral);
+    }
+
+    .people-band { background: #f4f7f6; }
+    .org-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .org-panel {
+      padding: 30px;
+      border-radius: 8px;
+      border: 1px solid #dde7e4;
+      background: var(--white);
+    }
+
+    .org-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .org-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      color: #3f4652;
+      font-weight: 700;
+    }
+
+    .org-row:last-child { border-bottom: 0; }
+    .org-row span:last-child { color: var(--teal); }
+
+    .cta {
+      padding: 78px 0;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--graphite), #173f3d 58%, #9f3f2c);
+    }
+
+    .cta-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .cta h2 { font-size: clamp(30px, 4vw, 48px); }
+    .cta p { margin: 14px 0 0; color: rgba(255,255,255,0.78); line-height: 1.7; }
+    .cta .button { background: var(--white); color: var(--graphite); border-color: var(--white); }
+
+    footer {
+      padding: 34px 0;
+      color: #7a828e;
+      background: #171a20;
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 860px) {
+      nav ul { display: none; }
+      .hero { min-height: 760px; }
+      .hero::before { background: linear-gradient(180deg, rgba(25,25,30,0.85), rgba(25,25,30,0.38)), url("assets/noeultech-hero.png") center/cover no-repeat; }
+      .stat-grid, .feature-grid, .section-head, .strategy-layout, .jobs-grid, .policy-grid, .org-box, .cta-inner { grid-template-columns: 1fr; }
+      .quick-stats { margin-top: -38px; }
+      section { padding: 72px 0; }
+      .step { grid-template-columns: 1fr; }
+      .cta-inner { align-items: start; }
+    }
+
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 28px, 1160px); }
+      .nav { height: 64px; }
+      .nav-cta { display: none; }
+      h1 {
+        max-width: min(300px, calc(100vw - 88px));
+        font-size: 34px;
+        line-height: 1.14;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+      }
+      .hero-content { max-width: min(300px, 100%); padding: 62px 0 92px; }
+      .hero p {
+        max-width: min(300px, calc(100vw - 88px));
+        font-size: 15px;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+      }
+      .feature, .job, .policy, .org-panel, .growth-card { padding: 22px; }
+      .stat { min-height: 104px; padding: 18px; }
+      .stat strong { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav" aria-label="주요 탐색">
+      <a class="brand" href="#top" aria-label="노을테크 홈"><span class="brand-mark" aria-hidden="true"></span><span>NoEulTech</span></a>
+      <nav>
+        <ul>
+          <li><a href="#product">노을AI</a></li>
+          <li><a href="#strategy">성장전략</a></li>
+          <li><a href="#people">조직문화</a></li>
+          <li><a href="#careers">채용</a></li>
+          <li><a href="#security">보안</a></li>
+        </ul>
+      </nav>
+      <a class="nav-cta" href="#careers">함께 성장하기</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-label="노을테크 소개">
+      <div class="wrap hero-content">
+        <div class="eyebrow">AI Accounting Automation</div>
+        <h1>회계와 세무의<br />반복 업무를 AI가<br />먼저 끝냅니다.</h1>
+        <p>노을테크는 서울 성수동에서 시작한 B2B SaaS 기업입니다. 중소기업 회계·세무 자동화 AI 어시스턴트 “노을AI”로 더 정확하고 빠른 재무 운영을 만듭니다.</p>
+        <div class="hero-actions">
+          <a class="button" href="#product">제품 보기</a>
+          <a class="button secondary" href="#strategy">2026 계획</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="quick-stats wrap" aria-label="회사 주요 지표">
+      <div class="stat-grid">
+        <div class="stat"><strong>2021</strong><span>서울 성수동에서 설립</span></div>
+        <div class="stat"><strong>47명</strong><span>2025년 12월 기준 임직원</span></div>
+        <div class="stat"><strong>82억</strong><span>2025년 연매출</span></div>
+        <div class="stat"><strong>150억</strong><span>2026년 매출 목표</span></div>
+      </div>
+    </div>
+
+    <section id="product" class="product-band">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="label">Product</div>
+            <h2>노을AI는 회계·세무 업무의 시간을 되돌려 줍니다.</h2>
+          </div>
+          <p>중소기업의 회계·세무 데이터를 이해하고, 반복 분류와 신고 준비 과정을 자동화하는 AI 어시스턴트입니다.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature">
+            <div class="icon">01</div>
+            <h3>자동 분류</h3>
+            <p>거래 내역과 증빙 데이터를 기반으로 회계·세무 항목을 빠르게 분류하고 검토 시간을 줄입니다.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">02</div>
+            <h3>신고 준비</h3>
+            <p>노을AI v2.0은 부가세·원천세 자동신고 기능을 추가해 실무자의 마감 부담을 낮춥니다.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">03</div>
+            <h3>엔터프라이즈 대응</h3>
+            <p>매출 1000억 이상 중견기업까지 겨냥한 신규 라인으로 대규모 고객의 업무 흐름을 지원합니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="strategy">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="label">2026 Strategy</div>
+            <h2>제품 고도화, 시장 확장, 해외 PoC를 동시에 추진합니다.</h2>
+          </div>
+          <p>2026년 노을테크는 매출 150억 원과 70명 규모 조직을 목표로 제품과 인력을 함께 확장합니다.</p>
+        </div>
+        <div class="strategy-layout">
+          <aside class="growth-card">
+            <span class="muted">Revenue Target</span>
+            <strong>+83%</strong>
+            <p>2025년 약 82억 원에서 2026년 150억 원으로 성장하는 계획입니다. 객단가 상승과 신규 고객 확보, 기존 고객 업셀이 핵심입니다.</p>
+          </aside>
+          <div class="timeline">
+            <article class="step"><b>v2.0</b><p><strong>노을AI v2.0 출시</strong><br />부가세·원천세 자동신고 기능을 더해 회계 마감 자동화 범위를 확장합니다.</p></article>
+            <article class="step"><b>B2B+</b><p><strong>엔터프라이즈 시장 진출</strong><br />매출 1000억 이상 중견기업을 위한 신규 라인과 제안 체계를 구축합니다.</p></article>
+            <article class="step"><b>Global</b><p><strong>해외 진출 준비</strong><br />일본·동남아 시장 조사와 PoC로 다음 성장 경로를 검증합니다.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="people" class="people-band">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="label">Organization</div>
+            <h2>작지만 명확한 조직으로 제품과 사업을 빠르게 움직입니다.</h2>
+          </div>
+          <p>프로덕트본부, 사업본부, AI연구소가 긴밀하게 연결되어 회계·세무 도메인의 AI 자동화를 구현합니다.</p>
+        </div>
+        <div class="org-box">
+          <div class="org-panel">
+            <h3>현재 조직</h3>
+            <div class="org-list">
+              <div class="org-row"><span>경영지원본부</span><span>8명</span></div>
+              <div class="org-row"><span>프로덕트본부</span><span>22명</span></div>
+              <div class="org-row"><span>사업본부</span><span>12명</span></div>
+              <div class="org-row"><span>AI연구소</span><span>5명</span></div>
+            </div>
+          </div>
+          <div class="org-panel">
+            <h3>일하는 방식</h3>
+            <div class="org-list">
+              <div class="org-row"><span>유연근무제</span><span>10~16시 코어타임</span></div>
+              <div class="org-row"><span>재택근무</span><span>주 2회</span></div>
+              <div class="org-row"><span>정기 피드백</span><span>분기 1:1</span></div>
+              <div class="org-row"><span>성장 지원</span><span>교육비·도서비</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="careers">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="label">Careers</div>
+            <h2>2026년, 노을테크는 22명의 동료를 더 만납니다.</h2>
+          </div>
+          <p>정규직 중심 채용 원칙 아래 직무역량, 성장 가능성, 조직 적합성, 가치관 일치를 함께 봅니다.</p>
+        </div>
+        <div class="jobs-grid">
+          <article class="job">
+            <h3>백엔드 개발자</h3>
+            <p>노을AI 백엔드 설계·개발, API 안정성, DB 최적화를 담당합니다.</p>
+            <ul><li>Python/Django 3년 이상</li><li>AWS, REST API 경험</li><li>핀테크·회계 도메인 우대</li></ul>
+          </article>
+          <article class="job">
+            <h3>ML 엔지니어</h3>
+            <p>회계·세무 자동분류 모델 개발과 LLM 파인튜닝을 담당합니다.</p>
+            <ul><li>PyTorch 또는 TensorFlow</li><li>NLP 실무 2년 이상</li><li>MLOps 및 LLM 운영 우대</li></ul>
+          </article>
+          <article class="job">
+            <h3>엔터프라이즈 영업</h3>
+            <p>중견기업 신규 영업, 제안서 작성, 계약 클로징을 담당합니다.</p>
+            <ul><li>B2B SaaS 영업 3년 이상</li><li>회계·재무 이해</li><li>컨설팅 배경 우대</li></ul>
+          </article>
+          <article class="job">
+            <h3>인사담당자 HRBP</h3>
+            <p>채용, 온보딩, 평가, HRD 전반을 연결하는 역할입니다.</p>
+            <ul><li>HR 경력 3년 이상</li><li>HRM/HRD 균형</li><li>IT/SaaS 경험 우대</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="security" class="product-band">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="label">Security & HR Policy</div>
+            <h2>사람과 데이터를 다루는 기준을 명확히 합니다.</h2>
+          </div>
+          <p>노을테크는 개인정보 보호, 평가 공정성, 성장 지원을 회사 운영의 기본값으로 둡니다.</p>
+        </div>
+        <div class="policy-grid">
+          <article class="policy">
+            <h3>보안·개인정보</h3>
+            <ul><li>직원 개인정보는 사내 HR 시스템에서만 관리</li><li>외부 LLM 사용 시 개인정보 마스킹 필수</li><li>평가·급여 정보는 본인 외 접근 제한</li></ul>
+          </article>
+          <article class="policy">
+            <h3>평가·보상</h3>
+            <ul><li>연 2회 정식 평가와 분기 1:1 미팅</li><li>업적 50%, 역량 30%, 교육 10%, 기여 10%</li><li>연봉제, 분기 인센티브, 스톡옵션</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap cta-inner">
+        <div>
+          <h2>반복 업무는 AI에게, 중요한 판단은 사람에게.</h2>
+          <p>노을테크는 회계·세무 실무자가 더 가치 있는 의사결정에 집중할 수 있는 제품을 만듭니다.</p>
+        </div>
+        <a class="button" href="#careers">채용 포지션 보기</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© 2026 NoEulTech Co., Ltd.</span>
+      <span>본 사이트는 HR AI 실습용 가상 회사 자료를 기반으로 제작되었습니다.</span>
+    </div>
+  </footer>
+</body>
+</html>
